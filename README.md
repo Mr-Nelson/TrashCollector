@@ -1,0 +1,2 @@
+# TrashCollector
+Collaboration using Django
