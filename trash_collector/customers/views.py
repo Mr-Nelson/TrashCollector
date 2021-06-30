@@ -14,3 +14,18 @@ def index(request):
     # thereby finding the customer/employee profile that matches with the logged-in user.
     print(user)
     return render(request, 'customers/index.html')
+def registration(request):
+    pass
+#       input types name, address, zipcode
+def monthly_statement(request):
+    pass
+#       utilize boolean statement from employees.views.charge_pickup function
+def create_edit_pickup(request):
+    pass
+#     create/edit format from previous project (possibly two functions)
+def onetime_pickup(request):
+    pass
+#       create format for onetime_pickup object
+def pickup_suspension(request):
+    pass
+#       if statement involving boolean user input
