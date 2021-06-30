@@ -9,11 +9,14 @@ from .models import Customer
 def index(request):
     # The following line will get the logged-in in user (if there is one) within any view function
     user = request.user
+    # query cutsomer take to find custeomr reccord whose user matches this user
+    # if that finds no results, redirect them to finsihin register
     # It will be necessary while creating a customer/employee to assign the logged-in user as the user foreign key
     # This will allow you to later query the database using the logged-in user,
     # thereby finding the customer/employee profile that matches with the logged-in user.
     print(user)
     return render(request, 'customers/index.html')
+
 def registration(request):
     pass
 #       input types name, address, zipcode

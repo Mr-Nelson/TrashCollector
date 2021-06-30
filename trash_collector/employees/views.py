@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.apps import apps
+from .models import Employee
+from .models import Customer
+import datetime
 
 # Create your views here.
 
@@ -9,12 +12,29 @@ from django.apps import apps
 
 def index(request):
     # This line will get the Customer model from the other app, it can now be used to query the db
+    # query cutsomer take to find custeomr reccord whose user matches this user
+    # if that finds no results, redirect them to finsihin register
     Customer = apps.get_model('customers.Customer')
     return render(request, 'employees/index.html')
 def daily_filter(request):
+    request.user
+    specific_route = Employee.objects.filter(route) == Customer.objects.filter(zipcode)
+    suspended_accounts = Customer.user
+    does_pickup = False
+        if Customer.weekly_pickup_day == datetime.datetime.now() or Customer.onetime_pickup == datetime.datetime.now()
+            return True
+        else:
+            return False
+    context = {
+        'specific_route' = specific_route, 'suspended_accounts' = suspended_accounts, 'does_pickup' = does_pickup
+    }
+    return render(request, 'employees/daily.html', context)
     pass
 #     filter customers in zip_code:route, non-suspended account, pickup day & onetime pickup are todays date (utilize NOW command)
 def lookup(request):
+    request.user
+    lookup_route = Employee.objects.filter(route)
+    lookup_date = request.datetime()
     pass
 #       filter customers in zip_code:route, non-suspended account, pickup day & onetime pickup are specific date (utilize Datefield)
 def confirm_pickup(request):
