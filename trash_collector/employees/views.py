@@ -12,8 +12,8 @@ import datetime
 
 def index(request):
     # This line will get the Customer model from the other app, it can now be used to query the db
-    # query cutsomer take to find custeomr reccord whose user matches this user
-    # if that finds no results, redirect them to finsihin register
+    # query customer take to find customer record whose user matches this user
+    # if that finds no results, redirect them to finishing register
     Customer = apps.get_model('customers.Customer')
     return render(request, 'employees/index.html')
 def daily_filter(request):
@@ -30,7 +30,7 @@ def daily_filter(request):
     }
     return render(request, 'employees/daily.html', context)
     pass
-#     filter customers in zip_code:route, non-suspended account, pickup day & onetime pickup are todays date (utilize NOW command)
+#     filter customers in zip_code:route, non-suspended account, pickup day & onetime pickup are today's date (utilize NOW command)
 def lookup(request):
     request.user
     lookup_route = Employee.objects.filter(route)
