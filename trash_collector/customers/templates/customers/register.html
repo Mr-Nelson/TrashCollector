@@ -15,14 +15,16 @@
                 Address:<br><input type="text" name="address" id="address"><br>
                 Zipcode:<br><input type="text" name="zip_code" id="zip_code"><br>
                 <div class="form-group">
-                    <label for="sel1">Select Day (select one):</label>
-                    <select class="form-control" style="width:auto" id="sel1">
-                        <option>Monday</option>
-                        <option>Tuesday</option>
-                        <option>Wednesday</option>
-                        <option>Thursday</option>
-                        <option>Friday</option>
-                    </select>
+                    <label for="sel1">Garbage pickup day(select one):</label><br>
+                        <select class="custom-select custom-select-sm" type="text" name="weekly_pickup_day" id="weekly_pickup_day">
+                        <option selected>Pick a Weekday</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+</select>
+
                 </div>
                 <br>
                 <input type="submit" value="Submit your details">

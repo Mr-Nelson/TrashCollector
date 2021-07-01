@@ -19,5 +19,5 @@ class RegisterView(generic.CreateView):
     
 def index(request):
     user = request.user
-    if user.is_employee == 0:
-        return HttpResponseRedirect(reverse('customers:registration'))
+    if user.is_employee == True:
+        return HttpResponseRedirect(reverse('employee:registration'))
