@@ -5,7 +5,7 @@ from django.apps import apps
 from django.urls import reverse
 
 from .models import Employee
-from trash_collector.customers.models import Customer
+from customers.models import Customer
 import datetime
 
 # Create your views here.
@@ -29,17 +29,17 @@ def registration(request):
         return HttpResponseRedirect(reverse('employees:index'))
 def daily_filter(request):
     request.user
-    create_route = Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request)
-    suspended_accounts = Customer.objects.filter(datetime.datetime.now()BETWEEN Customer.start_suspension AND Customer.end_suspension)
-    suspended_accounts = Customer.objects.exclude(datetime.datetime.now() > Customer.start_suspension) AND Customer.objects.exclude(datetime.datetime.now() < Customer.end_suspension)
-    does_pickup = False
+    # create_route = Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request)
+    # suspended_accounts = Customer.objects.filter(datetime.datetime.now()BETWEEN Customer.start_suspension AND Customer.end_suspension)
+    # suspended_accounts = Customer.objects.exclude(datetime.datetime.now() > Customer.start_suspension) AND Customer.objects.exclude(datetime.datetime.now() < Customer.end_suspension)
+    # does_pickup = False
     if Customer.weekly_pickup_day == datetime.datetime.now or Customer.onetime_pickup == datetime.datetime.now:
         return True
     else:
         return False
-    context = {
-        'create_route' : create_route, 'suspended_accounts' : suspended_accounts, 'does_pickup' : does_pickup
-    }
+    # context = {
+    #     'create_route' : create_route, 'suspended_accounts' : suspended_accounts, 'does_pickup' : does_pickup
+    # }
     return render(request, 'employees/daily.html', context)
 
 #     filter customers in zip_code:route, non-suspended account, pickup day & onetime pickup are today's date (utilize NOW command)
@@ -50,16 +50,18 @@ def lookup(request):
 
 #       filter customers in zip_code:route, non-suspended account, pickup day & onetime pickup are specific date (utilize Datefield)
 def confirm_pickup(request):
-    is_complete = False
-    try Customer.zip_code == .route:
-        is_complete = True
-    except Customer.zip_code += .route:
-        is_complete = False
-    return render(request, 'employees:confirm_pickup')
+#     is_complete = False
+#     try Customer.zip_code == .route:
+#         is_complete = True
+#     except Customer.zip_code += .route:
+#         is_complete = False
+#     return render(request, 'employees:confirm_pickup')
 
 #       utilizing boolean phrase is_complete
+    pass
 def charge_pickup(request):
     if request.confirm_pickup == True:
         Customer.balance += 5
 
 #       connected with boolean is_complete = True
+    pass

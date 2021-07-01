@@ -9,11 +9,11 @@ from .models import Customer
 def index(request):
     # The following line will get the logged-in in user (if there is one) within any view function
     user = request.user
-    is_customer = user.groups.filter(name="Customers").exists
-    if is_customer:
-        return render(request, "customers/register.html")
-    else:
-        return render(request, 'customers/index.html')
+    # is_customer = user.groups.filter(name="Customers").exists
+    # if is_customer:
+    #     return render(request, "accounts/register.html")
+    # else:
+    return render(request, 'customers/index.html')
 
     # It will be necessary while creating a customer/employee to assign the logged-in user as the user foreign key
     # This will allow you to later query the database using the logged-in user,
