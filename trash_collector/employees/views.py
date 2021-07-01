@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.apps import apps
 from django.urls import reverse
-from ..customers.models import Customer
+# from ..customers.models import Customer
 from .models import Employee
 import datetime
 
@@ -31,19 +31,20 @@ def registration(request):
     else:
         return render(request, 'employees/register.html')
 def daily_filter(request):
-    request.user
-    does_pickup = False
-    create_route = does_pickup == True
-    if Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request):
-        if ExtractWeekDay(Customer.weekly_pickup_day) == ExtractWeekDay.datetime.now or ExtractWeekDay(Customer.onetime_pickup) == ExtractWeekDay.datetime.now:
-            does_pickup = True
-        else:
-            does_pickup = False
-    suspended_accounts = Customer.objects.filter(
-            datetime.datetime.now() > Customer.start_suspension and Customer.objects.filter(
-                datetime.datetime.now() < Customer.end_suspension)
-    create_route.remove(suspended_accounts)
-    return render(request, 'employees/daily.html')
+    # request.user
+    # does_pickup = False
+    # create_route = [does_pickup == True]
+    # if Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request):
+    #     if ExtractWeekDay(Customer.weekly_pickup_day) == ExtractWeekDay.datetime.now or ExtractWeekDay(Customer.onetime_pickup) == ExtractWeekDay.datetime.now:
+    #         does_pickup = True
+    #     else:
+    #         does_pickup = False
+    # suspended_accounts = Customer.objects.filter(
+    #         datetime.datetime.now() > Customer.start_suspension and Customer.objects.filter(
+    #             datetime.datetime.now() < Customer.end_suspension)
+    # create_route.remove(suspended_accounts)
+    # return render(request, 'employees/daily.html')
+    pass
 #     filter customers in zip_code:route, non-suspended account, pickup day & onetime pickup are today's date (utilize NOW command)
 def lookup(request):
     # request.user
