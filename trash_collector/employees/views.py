@@ -29,10 +29,16 @@ def registration(request):
         return HttpResponseRedirect(reverse('employees:index'))
 def daily_filter(request):
     request.user
+<<<<<<< HEAD
     # create_route = Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request)
     # suspended_accounts = Customer.objects.filter(datetime.datetime.now()BETWEEN Customer.start_suspension AND Customer.end_suspension)
     # suspended_accounts = Customer.objects.exclude(datetime.datetime.now() > Customer.start_suspension) AND Customer.objects.exclude(datetime.datetime.now() < Customer.end_suspension)
     # does_pickup = False
+=======
+    create_route = Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request)
+    suspended_accounts = Customer.objects.exclude(datetime.datetime.now() > Customer.start_suspension) AND Customer.objects.exclude(datetime.datetime.now() < Customer.end_suspension)
+    does_pickup = False
+>>>>>>> 558b264a02a7a3fda2bb5a9f5fc64c40188d176e
     if Customer.weekly_pickup_day == datetime.datetime.now or Customer.onetime_pickup == datetime.datetime.now:
         return True
     else:
