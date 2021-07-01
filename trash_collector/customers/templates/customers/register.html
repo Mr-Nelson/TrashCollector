@@ -5,13 +5,27 @@
 {% block header %} Update Customer Account {% endblock %}
 
 {% block content %}
-  <h2>Enter Your Details Here</h2>
-  <form action="{% url 'customers:registration' %}" method="post">
-    {% csrf_token %}
-    Name:<input type="text" name="name" id="name"><br>
-    Address:<input type="text" name="address" id="address"><br>
-    Zipcode:<input type="text" name="zip_code" id="zip_code"><br>
-    Weekly Pickup Dat:<input type="date" name="weekly_pickup_day" id="weekly_pickup_day"><br>
-    <input type="submit" value="Submit your details.">
-  </form>
-{% endblock %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Enter Your Details Here</h2>
+            <form action="{% url 'customers:registration' %}" method="post">
+                {% csrf_token %}
+                Name:<br><input type="text" name="name" id="name"><br>
+                Address:<br><input type="text" name="address" id="address"><br>
+                Zipcode:<br><input type="text" name="zip_code" id="zip_code"><br>
+                <div class="form-group">
+                    <label for="sel1">Select Day (select one):</label>
+                    <select class="form-control" style="width:auto" id="sel1">
+                        <option>Monday</option>
+                        <option>Tuesday</option>
+                        <option>Wednesday</option>
+                        <option>Thursday</option>
+                        <option>Friday</option>
+                    </select>
+                </div>
+                <br>
+                <input type="submit" value="Submit your details">
+        </div>
+        </form>
+        {% endblock %}

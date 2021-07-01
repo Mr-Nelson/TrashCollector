@@ -30,32 +30,31 @@ def registration(request):
     else:
         return render(request, 'employees/register.html')
 def daily_filter(request):
-<<<<<<< HEAD
-    request.user
+# <<<<<<< HEAD
+#     request.user
+#
+# =======
+#     # request.user
+# >>>>>>> b8bc34b88a1b35f6217ac408f7ddd0080528464f
+#     # create_route = Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request)
+#     # suspended_accounts = Customer.objects.exclude(datetime.datetime.now() > Customer.start_suspension) AND Customer.objects.exclude(datetime.datetime.now() < Customer.end_suspension)
+#     # does_pickup = False
+# <<<<<<< HEAD
+#
+#     # create_route = Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request)
+#     # suspended_accounts = Customer.objects.exclude(datetime.datetime.now() > Customer.start_suspension) AND Customer.objects.exclude(datetime.datetime.now() < Customer.end_suspension)
+#     # does_pickup = False
+#     pass
+#
+#     if Customer.weekly_pickup_day == datetime.datetime.now or Customer.onetime_pickup == datetime.datetime.now:
+#         return True
+#     else:
+#         return False
 
-=======
-    # request.user
->>>>>>> b8bc34b88a1b35f6217ac408f7ddd0080528464f
-    # create_route = Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request)
-    # suspended_accounts = Customer.objects.exclude(datetime.datetime.now() > Customer.start_suspension) AND Customer.objects.exclude(datetime.datetime.now() < Customer.end_suspension)
-    # does_pickup = False
-<<<<<<< HEAD
-
-    # create_route = Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request)
-    # suspended_accounts = Customer.objects.exclude(datetime.datetime.now() > Customer.start_suspension) AND Customer.objects.exclude(datetime.datetime.now() < Customer.end_suspension)
-    # does_pickup = False
-    pass
-
-    if Customer.weekly_pickup_day == datetime.datetime.now or Customer.onetime_pickup == datetime.datetime.now:
-        return True
-    else:
-        return False
-=======
     # if Customer.weekly_pickup_day == datetime.datetime.now or Customer.onetime_pickup == datetime.datetime.now:
     #     return True
     # else:
     #     return False
->>>>>>> b8bc34b88a1b35f6217ac408f7ddd0080528464f
     # context = {
     #     'create_route' : create_route, 'suspended_accounts' : suspended_accounts, 'does_pickup' : does_pickup
     # }
