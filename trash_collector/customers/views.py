@@ -7,16 +7,27 @@ from .models import Customer
 
 
 def index(request):
-    if Customer.user == user_id:
-    # query customer take to find customer record whose user matches this user
-    # if that finds no results, redirect them to finishing register
+    # The following line will get the logged-in in user (if there is one) within any view function
+    user = request.user
+    is_customer = user.groups.filter(name="Customers").exists
+    if is_customer:
+        return render(request, "customers/register.html")
+    else:
+        return render(request, 'customers/index.html')
+
     # It will be necessary while creating a customer/employee to assign the logged-in user as the user foreign key
     # This will allow you to later query the database using the logged-in user,
     # thereby finding the customer/employee profile that matches with the logged-in user.
     # print(user)
-        return render(request, 'customers/index.html')
-    else:
-        return render(request, "customers/register.html")
+    # return render(request, 'customers/index.html')
+
+    # # query customer take to find customer record whose user matches this user
+    # # if that finds no results, redirect them to finishing register
+    # # It will be necessary while creating a customer/employee to assign the logged-in user as the user foreign key
+    # # This will allow you to later query the database using the logged-in user,
+    # # thereby finding the customer/employee profile that matches with the logged-in user.
+    # # print(user)
+
 
 def registration(request):
     if request.method == 'POST':
