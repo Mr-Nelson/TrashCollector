@@ -35,13 +35,15 @@ def registration(request):
         name = request.POST.get('name')
         address = request.POST.get('address')
         zip_code = request.POST.get('zip_code')
+        weekly_pickup_day = request.POST.get('weekly_pickup_day')
         new_user = Customer(name=name,
-                                  address=address,
-                                  zip_code=zip_code)
+                            address=address,
+                            zip_code=zip_code,
+                            weekly_pickup_day=weekly_pickup_day)
         new_user.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
-        return render(request, "customers/home.html")
+        return render(request, "customers/register.html")
 #       input types name, address, zipcode
     pass
 def monthly_statement(request):
@@ -75,6 +77,8 @@ def onetime_pickup(request):
         new_onetime_pickup = Customer(onetime_pickup=onetime_pickup)
         new_onetime_pickup.save()
         return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        return render(request, "customers/onetime_pickup.html")
         pass
     #       create format for onetime_pickup object
 def pickup_suspension(request):
