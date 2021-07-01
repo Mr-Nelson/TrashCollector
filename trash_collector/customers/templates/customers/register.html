@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Update Customer Account {% endblock %}
+
+{% block header %} Update Customer Account {% endblock %}
+
+{% block content %}
+  <h2>Enter Your Details Here</h2>
+  <form action="{% url 'customers:registration' %}" method="post">
+    {% csrf_token %}
+    Name:<input type="text" name="name" id="name"><br>
+    Address:<input type="text" name="address" id="address"><br>
+    Zipcode:<input type="text" name="zip_code" id="zip_code"><br>
+    Weekly Pickup Dat:<input type="date" name="weekly_pickup_day" id="weekly_pickup_day"><br>
+    <input type="submit" value="Submit your details.">
+  </form>
+{% endblock %}

@@ -30,7 +30,6 @@ def registration(request):
 def daily_filter(request):
     request.user
     create_route = Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request)
-    suspended_accounts = Customer.objects.filter(datetime.datetime.now()BETWEEN Customer.start_suspension AND Customer.end_suspension)
     suspended_accounts = Customer.objects.exclude(datetime.datetime.now() > Customer.start_suspension) AND Customer.objects.exclude(datetime.datetime.now() < Customer.end_suspension)
     does_pickup = False
     if Customer.weekly_pickup_day == datetime.datetime.now or Customer.onetime_pickup == datetime.datetime.now:
