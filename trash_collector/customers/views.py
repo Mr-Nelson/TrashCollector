@@ -12,7 +12,7 @@ def index(request):
     user = request.user
     try:
         customer = Customer.objects.get(user_id=user.id)
-        context ={
+        context = {
             'customer': customer
         }
         return render(request, 'customer/index.html', context)
