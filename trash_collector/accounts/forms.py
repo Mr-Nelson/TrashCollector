@@ -1,9 +1,10 @@
 from django import forms
 from .models import User
 from django.contrib.auth.models import Group
+from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 class CustomUserForm(UserCreationForm):
     """This form allows our custom user model to be registered with an added field reflecting its employee status"""
@@ -24,11 +25,11 @@ class CustomUserForm(UserCreationForm):
             if user.is_employee:
                 employees = Group.objects.get(name="Employees")
                 employees.user_set.add(user)
-                return HttpResponseRedirect('employee/register.html')
+                return redirect(reverse('employees:registration'))
             else:
                 customers = Group.objects.get(name="Customers")
                 customers.user_set.add(user)
-                return HttpResponseRedirect('customers/register.html')
+                return redirect(reverse('customers:registration'))
         return user
 
 

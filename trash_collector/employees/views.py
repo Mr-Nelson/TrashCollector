@@ -19,6 +19,7 @@ def index(request):
     # if that finds no results, redirect them to finishing register
     Customer = apps.get_model('customers.Customer')
     return render(request, 'employees/index.html')
+
 def registration(request):
     new_employee = request.user
     if request.method == 'POST':

@@ -1,5 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from .models import Customer
 # Create your views here.
 
@@ -9,11 +10,18 @@ from .models import Customer
 def index(request):
     # The following line will get the logged-in in user (if there is one) within any view function
     user = request.user
+    try:
+        customer = Customer.objects.get(user_id=user.id)
+        context ={
+            'customer': customer
+        }
+        return render(request, 'customer/index.html', context)
+    except:
+        return HttpResponseRedirect(reverse('customers:registration'))
     # is_customer = user.groups.filter(name="Customers").exists
     # if is_customer:
     #     return render(request, "accounts/register.html")
     # else:
-    return render(request, 'customers/index.html')
 
     # It will be necessary while creating a customer/employee to assign the logged-in user as the user foreign key
     # This will allow you to later query the database using the logged-in user,
@@ -35,16 +43,16 @@ def registration(request):
         address = request.POST.get('address')
         zip_code = request.POST.get('zip_code')
         weekly_pickup_day = request.POST.get('weekly_pickup_day')
-        new_user = Customer(name=name,
+        user_registration = Customer(name=name,
                             address=address,
                             zip_code=zip_code,
                             weekly_pickup_day=weekly_pickup_day)
-        new_user.save()
+        user_registration.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
         return render(request, "customers/register.html")
-#       input types name, address, zipcode
     pass
+
 def monthly_statement(request):
     pass
 #       utilize boolean statement from employees.views.charge_pickup function
