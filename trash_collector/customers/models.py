@@ -14,3 +14,4 @@ class Customer(models.Model):
     balance = models.IntegerField(default=0)
     address = models.CharField(max_length=10, null=True)
     zip_code = models.CharField(max_length=5, null=True)
+

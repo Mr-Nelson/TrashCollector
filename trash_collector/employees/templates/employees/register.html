@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %} Register Account {% endblock %}
+{% block title %} Update Employee Account {% endblock %}
 
-{% block header %} Register Account {% endblock %}
+{% block header %} Update Employee Account {% endblock %}
 
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
+  <h2>Enter Your Details Here</h2>
+  <form action="{% url 'employees:register' %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
+    Name:<input type="text" name="name" id="name"><br>
+    Route:<input type="text" name="route" id="route"><br>
+    <input type="submit" value="Submit your details.">
   </form>
 {% endblock %}
