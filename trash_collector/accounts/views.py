@@ -1,3 +1,5 @@
+
+from django.http import HttpResponseRedirect
 from django.contrib.auth import login
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -14,3 +16,8 @@ class RegisterView(generic.CreateView):
     form_class = CustomUserForm
     success_url = reverse_lazy('login')
     template_name = 'registration/register.html'
+    
+def index(request):
+    user = request.user
+    if user.is_employee == 0:
+        return HttpResponseRedirect(reverse('customers:registration'))
