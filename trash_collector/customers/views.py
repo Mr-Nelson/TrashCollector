@@ -7,18 +7,6 @@ from .models import Customer
 
 
 def index(request):
-    # The following line will get the logged-in in user (if there is one) within any view function
-    user = request.user
-<<<<<<< HEAD
-    # query cutsomer take to find custeomr reccord whose user matches this user
-    # if that finds no results, redirect them to finsihin register
-    # It will be necessary while creating a customer/employee to assign the logged-in user as the user foreign key
-    # This will allow you to later query the database using the logged-in user,
-    # thereby finding the customer/employee profile that matches with the logged-in user.
-    print(user)
-    return render(request, 'customers/index.html')
-
-=======
     if Customer.user == user_id:
     # query customer take to find customer record whose user matches this user
     # if that finds no results, redirect them to finishing register
@@ -29,7 +17,7 @@ def index(request):
         return render(request, 'customers/index.html')
     else:
         return render(request, "customers/register.html")
->>>>>>> 631f06fa4f972c570555e5b76bd9013bce5aff38
+
 def registration(request):
     if request.method == 'POST':
         name = request.POST.get('name')

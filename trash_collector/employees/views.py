@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.apps import apps
 from .models import Employee
-from .models import Customer
+from customers.models import Customer
 import datetime
 
 # Create your views here.
@@ -21,12 +21,12 @@ def daily_filter(request):
     specific_route = Employee.objects.filter(route) == Customer.objects.filter(zipcode)
     suspended_accounts = Customer.user
     does_pickup = False
-        if Customer.weekly_pickup_day == datetime.datetime.now() or Customer.onetime_pickup == datetime.datetime.now()
-            return True
-        else:
-            return False
+    if Customer.weekly_pickup_day == datetime.datetime.now or Customer.onetime_pickup == datetime.datetime.now:
+        return True
+    else:
+        return False
     context = {
-        'specific_route' = specific_route, 'suspended_accounts' = suspended_accounts, 'does_pickup' = does_pickup
+        'specific_route' : specific_route, 'suspended_accounts' : suspended_accounts, 'does_pickup' : does_pickup
     }
     return render(request, 'employees/daily.html', context)
     pass
