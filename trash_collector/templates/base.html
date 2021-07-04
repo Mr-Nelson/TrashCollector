@@ -18,6 +18,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
+      <li><a href="{% url 'customers:registration' %}">Account Details</a></li>
       <li><a href="#">Change Pickup Day</a></li>
       <li><a href="#">Request One Time Pickup</a></li>
       <li><a href="#">Suspend Service</a></li>
@@ -33,7 +34,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
-      <li><a href="{% url 'employees:register' %}">Register Employee</a></li>
+      <li><a href="{% url 'employees:registration' %}">Register Employee</a></li>
       <li><a href="{% url 'employees:daily' %}">Daily Route</a></li>
       <li><a href="{% url 'employees:lookup' %}">Lookup Specific Date</a></li>
     </ul>

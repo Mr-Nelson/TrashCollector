@@ -6,7 +6,7 @@
 
 {% block content %}
   <h2>Enter Your Details Here</h2>
-  <form action="{% url 'employees:register' %}" method="post">
+  <form action="{% url 'employees:registration' %}" method="post">
     {% csrf_token %}
     Name:<input type="text" name="name" id="name"><br>
     Route:<input type="text" name="route" id="route"><br>

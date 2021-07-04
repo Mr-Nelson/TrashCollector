@@ -12,6 +12,6 @@ class Customer(models.Model):
     start_suspension = models.DateField(null=True)
     end_suspension = models.DateField(null=True)
     balance = models.IntegerField(default=0)
-    address = models.CharField(max_length=100, null=True)
+    address = models.CharField(max_length=101, null=True)
     zip_code = models.CharField(max_length=5, null=True)
 

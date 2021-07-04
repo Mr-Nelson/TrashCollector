@@ -7,7 +7,7 @@ from . import views
 app_name = "employees"
 urlpatterns = [
     path('', views.index, name="index"),
-    path('register/', views.registration, name="register"),
+    path('register/', views.registration, name="registration"),
     path('filter/', views.daily_filter, name="daily"),
     path('lookup/', views.lookup, name="lookup"),
     path('confirm/', views.confirm_pickup, name="confirm"),
