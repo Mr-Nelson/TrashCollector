@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Daily Route {% endblock %}
+
+{% block header %} Daily Route {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h2>Daily Route</h2>
+<li><h2>{{Employee.daily_route}}</h2></li>
+  {% else %}
+    <p>You are at the daily route page. You do not have a daily route today.</p>
+    <a href="{% url 'employee.registration' %}">Create employee prfile.</a>
+{% endblock %}
