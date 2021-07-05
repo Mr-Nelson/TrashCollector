@@ -60,8 +60,11 @@ def registration(request):
 def monthly_statement(request):
     pass
 #       utilize boolean statement from employees.views.charge_pickup function
-def create_edit_pickup(request, id):
-    edit_weekly_pickup_day = User.objects.filter(pk=id).get
+
+def create_edit_pickup(request):
+    user = request.user
+    print(user.id)
+    edit_weekly_pickup_day = Customer.objects.get()
     context = {
             'edit_weekly_pickup_day': edit_weekly_pickup_day
     }
@@ -77,13 +80,19 @@ def create_edit_pickup(request, id):
 
 
 def onetime_pickup(request):
+    user = request.user
+    print(user.id)
+    new_onetime_pickup = Customer.objects.get()
+    context = {
+            'new_onetime_pickup': new_onetime_pickup
+    }
     if request.method == 'POST':
-        onetime_pickup = request.POST.get('onetime_pickup')
-        new_onetime_pickup = Customer(onetime_pickup=onetime_pickup)
+        new_onetime_pickup.onetime_pickup = request.POST.get('onetime_pickup')
+        # new_onetime_pickup = Customer(onetime_pickup=onetime_pickup)
         new_onetime_pickup.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
-        return render(request, "customers/onetime_pickup.html")
+        return render(request, "customers/onetime_pickup.html", context)
         pass
     #       create format for onetime_pickup object
 def pickup_suspension(request):
