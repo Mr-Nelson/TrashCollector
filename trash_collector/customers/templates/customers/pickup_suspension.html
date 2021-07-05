@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Suspend Service {% endblock %}
+
+{% block header %} Suspend Service {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Suspend Service</h2>
+            <form action="{% url 'customers:pickup_suspension' %}" method="post">
+                {% csrf_token %}
+                Suspension Start Date:<br><input type="date" name="start_suspension" id="start_suspension"><br>
+                Suspension End Date:<br><input type="date" name="end_suspension" id="end_suspension"><br>
+                <br>
+                <input type="submit" value="Submit Request">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
