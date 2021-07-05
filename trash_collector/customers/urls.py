@@ -9,6 +9,6 @@ app_name = "customers"
 urlpatterns = [
     path('', views.index, name="index"),
     path('register/', views.registration, name="registration"),
-    path('edit_weekly_pickup_day/<int:customer>', views.create_edit_pickup, name="edit_weekly_pickup_day"),
+    path('edit_weekly_pickup_day/<int:id>', views.create_edit_pickup, name="edit_weekly_pickup_day"),
     path('onetime_pickup/<int:user_id>', views.onetime_pickup, name="onetime_pickup")
 ]

@@ -10,6 +10,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <h1>Current Pickup Day - {{weekly_pickup_day}} </h1>
+            <form action="{% url 'customers:edit_weekly_pickup_day' %}" method="post">
             <div class="form-group">
                 <label for="sel1">Garbage pickup day(select one):</label><br>
                 <select class="custom-select custom-select-sm" type="text" name="weekly_pickup_day"
