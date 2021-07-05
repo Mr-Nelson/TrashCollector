@@ -17,8 +17,13 @@
       <a class="navbar-brand" href="#">dCC Trash Services</a>
     </div>
     <ul class="nav navbar-nav">
+<<<<<<< HEAD
       <li class="active"><a href="#">Home</a></li>
       <li><a href="{% url 'customers:index' %}">Account Details</a></li>
+=======
+      <li><a href="{% url 'customers:index' %}">Home</a></li>
+      <li><a href="{% url 'customers:registration' %}">Account Details</a></li>
+>>>>>>> c538039a1424900ee84117346e970b0b78c7af80
       <li><a href="{% url 'customers:edit_weekly_pickup_day' %}">Change Pickup Day</a></li>
       <li><a href="{% url 'customers:onetime_pickup' %}">Request One Time Pickup</a></li>
       <li><a href="{% url 'customers:pickup_suspension' %}">Suspend Service</a></li>
@@ -34,7 +39,7 @@
       <a class="navbar-brand" href="#">dCC Trash Services</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li><a href="{% url 'employees:index' %}">Home</a></li>
       <li><a href="{% url 'employees:registration' %}">Register Employee</a></li>
       <li><a href="{% url 'employees:daily' %}">Daily Route</a></li>
       <li><a href="{% url 'employees:lookup' %}">Lookup Specific Date</a></li>

@@ -8,21 +8,25 @@
  <li><h2>{{Employee.lookup}}</h2></li>
   {% if Employee.lookup  %}
 
-  <table>
-    <thead title="Lookup">Daily Route</thead>
-      <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Zipcode</th>
-        <th>Confirm Pickup</th>
-      </tr>
-      <tr>
-        <td>{{Customer.name}}</td>
-        <td>{{Customer.address}}</td>
-        <td>{{Customer.zip_code}}</td>
-        <td>{{Employee.confirm_pickup}}</td>
-      </tr>
-  </table>
+  <table class="table table-striped">
+        <thead title="Customers">
+          <p>Route Lookup</p>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Zipcode</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for Customer in all_customers %}
+          <tr>
+            <td>{{Customer.name}}</td>
+            <td>{{Customer.address}}</td>
+            <td>{{Customer.zip_code}}</td>
+          </tr>
+        {% endfor %}
+       </tbody>
+      </table>
   {% else %}
     <p>You are at the lookup route page. You do not have a route this day. Please try a different day.</p>
   {% endif %}
