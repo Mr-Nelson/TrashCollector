@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.apps import apps
 from django.urls import reverse
 from .models import Employee
-import pandas as pd
+
 import datetime
 
 # Create your views here.

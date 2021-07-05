@@ -58,17 +58,18 @@ def registration(request):
         return render(request, "customers/register.html")
     pass
 
-def monthly_statement(request):
-    monthly_statement_detail = Customer.objects.get()
+def account_info(request):
+    user = request.user
+    account_info_detail = Customer.objects.get(user=user)
     context = {
-        'monthly_statement_detail': monthly_statement_detail
+        'account_info_detail': account_info_detail
     }
-    return render(request, 'customers/monthly_statement.html', context)
+    return render(request, 'customers/account_info.html', context)
 
 def create_edit_pickup(request):
     user = request.user
     print(user.id)
-    edit_weekly_pickup_day = Customer.objects.get()
+    edit_weekly_pickup_day = Customer.objects.get(user=user)
     context = {
             'edit_weekly_pickup_day': edit_weekly_pickup_day
     }
@@ -86,7 +87,7 @@ def create_edit_pickup(request):
 def onetime_pickup(request):
     user = request.user
     print(user.id)
-    new_onetime_pickup = Customer.objects.get()
+    new_onetime_pickup = Customer.objects.get(user=user)
     context = {
             'new_onetime_pickup': new_onetime_pickup
     }
@@ -102,7 +103,7 @@ def onetime_pickup(request):
 def pickup_suspension(request):
     user = request.user
     print(user.id)
-    new_pickup_suspension = Customer.objects.get()
+    new_pickup_suspension = Customer.objects.get(user=user)
     context = {
         'new_pickup_suspension': new_pickup_suspension
     }

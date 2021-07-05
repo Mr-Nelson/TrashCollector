@@ -12,5 +12,5 @@ urlpatterns = [
     path('edit_weekly_pickup_day/', views.create_edit_pickup, name="edit_weekly_pickup_day"),
     path('onetime_pickup/', views.onetime_pickup, name="onetime_pickup"),
     path('pickup_suspension/', views.pickup_suspension, name="pickup_suspension"),
-    path('monthly_statement/', views.monthly_statement, name="monthly_statement")
+    path('account_info/', views.account_info, name="account_info")
 ]

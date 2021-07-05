@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Account Details {% endblock %}
+
+{% block header %} Account Details {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <strong>Name</strong><br>
+            <p> {{account_info_detail.name}}</p><br>
+            <strong>Address</strong><br>
+            <p> {{account_info_detail.address}}</p>
+            <p> {{account_info_detail.zip_code}}</p><br><br>
+            <strong>Current Weekly Pickup Day</strong>
+            <p>{{account_info_detail.weekly_pickup_day}}</p><br>
+
+            <strong>Current Monthly Charges</strong>
+            <p> ${{account_info_detail.balance}}
+             - Due on the last day of every month.</p>
+          </div>
+    </div>
+</div>
+
+{% endblock %}
