@@ -3,7 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.apps import apps
 from django.urls import reverse
-# from ..customers.models import Customer
+
+
+
 from .models import Employee
 import datetime
 
@@ -21,29 +23,39 @@ def index(request):
     return render(request, 'employees/index.html')
 
 def registration(request):
-    new_employee = request.user
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        route = request.POST.get('route')
-        new_employee = Employee(name=name, route=route)
-        new_employee.save()
-        return HttpResponseRedirect(reverse('employees:index'))
-    else:
-        return render(request, 'employees/register.html')
+    request.user
+    try:
+        new_employee = Employee.objects.get(user_id=User.id)
+        context = {
+            'new_employee' : new_employee
+        }
+        print("Employee.name has already been registered.")
+        return render(request, 'employee/index.html', context)
+    except:
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            route = request.POST.get('route')
+            user = request.user
+            new_employee = Employee(name=name, route=route, user=user)
+            new_employee.save()
+            return HttpResponseRedirect(reverse('employees:index'))
+        else:
+            return render(request, 'employees/register.html')
 def daily_filter(request):
-    # request.user
-    # does_pickup = False
-    # create_route = [does_pickup == True]
-    # if Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request):
-    #     if ExtractWeekDay(Customer.weekly_pickup_day) == ExtractWeekDay.datetime.now or ExtractWeekDay(Customer.onetime_pickup) == ExtractWeekDay.datetime.now:
-    #         does_pickup = True
-    #     else:
-    #         does_pickup = False
+    request.user
+    Customer = apps.get_model('customers.Customer')
+    does_pickup = False
+    create_route = [does_pickup == True]
+    while Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request):
+        if ExtractWeekDay(Customer.weekly_pickup_day) == ExtractWeekDay.datetime.now or ExtractWeekDay(                         Customer.onetime_pickup) == ExtractWeekDay.datetime.now:
+            does_pickup = True
+        else:
+            does_pickup = False
     # suspended_accounts = Customer.objects.filter(
     #         datetime.datetime.now() > Customer.start_suspension and Customer.objects.filter(
     #             datetime.datetime.now() < Customer.end_suspension)
     # create_route.remove(suspended_accounts)
-    # return render(request, 'employees/daily.html')
+    return render(request, 'employees/daily.html')
     pass
 #     filter customers in zip_code:route, non-suspended account, pickup day & onetime pickup are today's date (utilize NOW command)
 def lookup(request):
