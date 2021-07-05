@@ -5,10 +5,25 @@
 {% block header %} Daily Route {% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-  <h2>Daily Route</h2>
-<li><h2>{{Employee.daily_route}}</h2></li>
+  <li><h2>{{Employee.daily_filter}}</h2></li>
+  {% if Employee.daily_filter  %}
+
+  <table>
+    <thead title="Daily_Route">Daily Route</thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Zipcode</th>
+        <th>Confirm Pickup</th>
+      </tr>
+      <tr>
+        <td>{{Customer.name}}</td>
+        <td>{{Customer.address}}</td>
+        <td>{{Customer.zip_code}}</td>
+        <td>{{Employee.confirm_pickup}}</td>
+      </tr>
+  </table>
   {% else %}
-    <p>You are at the daily route page. You do not have a daily route today.</p>
-    <a href="{% url 'employee.registration' %}">Create employee prfile.</a>
+    <p>You are at the daily route page. You do not have a daily route today. Please visit the registration page.</p>
+  {% endif %}
 {% endblock %}
