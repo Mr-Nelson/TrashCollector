@@ -10,5 +10,7 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('register/', views.registration, name="registration"),
     path('edit_weekly_pickup_day/', views.create_edit_pickup, name="edit_weekly_pickup_day"),
-    path('onetime_pickup/', views.onetime_pickup, name="onetime_pickup")
+    path('onetime_pickup/', views.onetime_pickup, name="onetime_pickup"),
+    path('pickup_suspension/', views.pickup_suspension, name="pickup_suspension"),
+    path('monthly_statement/', views.monthly_statement, name="monthly_statement")
 ]

@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.db.models.sql import AND
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -58,8 +59,11 @@ def registration(request):
     pass
 
 def monthly_statement(request):
-    pass
-#       utilize boolean statement from employees.views.charge_pickup function
+    monthly_statement_detail = Customer.objects.get()
+    context = {
+        'monthly_statement_detail': monthly_statement_detail
+    }
+    return render(request, 'customers/monthly_statement.html', context)
 
 def create_edit_pickup(request):
     user = request.user
@@ -88,14 +92,25 @@ def onetime_pickup(request):
     }
     if request.method == 'POST':
         new_onetime_pickup.onetime_pickup = request.POST.get('onetime_pickup')
-        # new_onetime_pickup = Customer(onetime_pickup=onetime_pickup)
         new_onetime_pickup.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
         return render(request, "customers/onetime_pickup.html", context)
-        pass
     #       create format for onetime_pickup object
+
+
 def pickup_suspension(request):
-    if start_suspension == True:
-        pass
-#       if statement involving boolean user input
+    user = request.user
+    print(user.id)
+    new_pickup_suspension = Customer.objects.get()
+    context = {
+        'new_pickup_suspension': new_pickup_suspension
+    }
+    if request.method == 'POST':
+        new_pickup_suspension.start_suspension = request.POST.get('start_suspension')
+        new_pickup_suspension.end_suspension = request.POST.get('end_suspension')
+        new_pickup_suspension.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        return render(request, "customers/pickup_suspension.html", context)
+
