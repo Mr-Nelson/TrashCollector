@@ -60,8 +60,11 @@ def registration(request):
 def monthly_statement(request):
     pass
 #       utilize boolean statement from employees.views.charge_pickup function
-def create_edit_pickup(request, id):
-    edit_weekly_pickup_day = User.objects.filter(pk=id).get
+
+def create_edit_pickup(request):
+    user = request.user
+    print(user.id)
+    edit_weekly_pickup_day = Customer.objects.get()
     context = {
             'edit_weekly_pickup_day': edit_weekly_pickup_day
     }
