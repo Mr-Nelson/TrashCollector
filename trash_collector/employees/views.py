@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.apps import apps
 from django.urls import reverse
 from .models import Employee
+import pandas as pd
 import datetime
 
 # Create your views here.
@@ -18,8 +19,9 @@ def index(request):
     # query customer take to find customer record whose user matches this user
     # if that finds no results, redirect them to finishing register
     Customer = apps.get_model('customers.Customer')
+    customer = Customer.objects.all
     context = {
-        'customer': Customer
+        'customer': customer
     }
     return render(request, 'employees/index.html', context)
 
@@ -57,7 +59,10 @@ def daily_filter(request):
     #         datetime.datetime.now() > Customer.start_suspension and Customer.objects.filter(
     #             datetime.datetime.now() < Customer.end_suspension)
     # create_route.remove(suspended_accounts)
-    return render(request, 'employees/Daily Route.html')
+    context = {
+        'create_route':create_route
+    }
+    return render(request, 'employees/Daily Route.html', context)
     pass
 #     filter customers in zip_code:route, non-suspended account, pickup day & onetime pickup are today's date (utilize NOW command)
 def lookup(request):

@@ -5,6 +5,29 @@
 {% block content %}
   {% if user.is_authenticated %}
     Hello Employee {{ user.username }}!
+
+     <table class="table table-striped">
+       {% csrf_token %}
+        <thead title="Customers">
+          <p width="100%">Customers</p>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Zipcode</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for Customer in all_customers %}
+          <tr>
+            <td>{{Customer.name}}</td>
+            <td>{{Customer.address}}</td>
+            <td>{{Customer.zip_code}}</td>
+            <td>{{Customer.balance}}</td>
+          </tr>
+        {% endfor %}
+       </tbody>
+      </table>
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
