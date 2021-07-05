@@ -59,8 +59,11 @@ def registration(request):
     pass
 
 def monthly_statement(request):
-    pass
-#       utilize boolean statement from employees.views.charge_pickup function
+    monthly_statement_detail = Customer.objects.get()
+    context = {
+        'monthly_statement_detail': monthly_statement_detail
+    }
+    return render(request, 'customers/monthly_statement.html', context)
 
 def create_edit_pickup(request):
     user = request.user
