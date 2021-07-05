@@ -81,7 +81,10 @@ def lookup(request):
     #         datetime.datetime.(request) > Customer.start_suspension and Customer.objects.filter(
     #             datetime.datetime.(request) < Customer.end_suspension)
     # create_route.remove(suspended_accounts)
-    return render(request, 'employees/Route Lookup.html')
+    context = {
+        'create_route': create_route
+    }
+    return render(request, 'employees/Route Lookup.html', context)
     pass
 #       filter customers in zip_code:route, non-suspended account, pickup day & onetime pickup are specific date (utilize Datefield)
 def confirm_pickup(request):
