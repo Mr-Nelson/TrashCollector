@@ -42,11 +42,12 @@ def index(request):
 
 def registration(request):
     if request.method == 'POST':
+        user = request.user
         name = request.POST.get('name')
         address = request.POST.get('address')
         zip_code = request.POST.get('zip_code')
         weekly_pickup_day = request.POST.get('weekly_pickup_day')
-        user_registration = Customer(name=name,
+        user_registration = Customer(name=name, user=user,
                             address=address,
                             zip_code=zip_code,
                             weekly_pickup_day=weekly_pickup_day)
@@ -59,15 +60,8 @@ def registration(request):
 def monthly_statement(request):
     pass
 #       utilize boolean statement from employees.views.charge_pickup function
-def create_edit_pickup(request, customer):
-    # if request.method == 'POST':
-        # if Customer.weekly_pickup_day == None:
-        #     weekly_pickup_day = request.POST.get('name')
-        #     new_weekly_pickup_day = Customer(weekly_pickup_day=weekly_pickup_day)
-        #     new_weekly_pickup_day.save()
-        #     return HttpResponseRedirect(reverse('customers:index'))
-        # else:
-    edit_weekly_pickup_day =User.objects.get(pk=customer)
+def create_edit_pickup(request, id):
+    edit_weekly_pickup_day = User.objects.filter(pk=id).get
     context = {
             'edit_weekly_pickup_day': edit_weekly_pickup_day
     }
