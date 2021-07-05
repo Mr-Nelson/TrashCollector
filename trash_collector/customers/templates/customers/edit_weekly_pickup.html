@@ -9,11 +9,11 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <h1>Current Pickup Day - {{user_id.weekly_pickup_day}} </h1>
+            <h1>Your Current Pickup Day is {{edit_weekly_pickup_day.weekly_pickup_day}} </h1>
             <form action="{% url 'customers:edit_weekly_pickup_day' %}" method="post">
                 {% csrf_token %}
             <div class="form-group">
-                <label for="sel1">Garbage pickup day(select one):</label><br>
+                <label for="sel1">Select a new weekday below:</label><br>
                 <select class="custom-select custom-select-sm" type="text" name="weekly_pickup_day"
                         id="weekly_pickup_day">
                     <option selected>Pick a Weekday</option>
@@ -25,7 +25,7 @@
                 </select>
             </div>
             <br>
-            <input type="submit" value="Submit your details">
+            <input type="submit" value="Submit">
             </form>
             <div class="col-md-4"></div>
         </div>
