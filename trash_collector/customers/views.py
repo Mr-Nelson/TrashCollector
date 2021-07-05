@@ -1,7 +1,10 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import Customer
+from django.contrib.auth.models import AbstractUser
+from accounts.models import User
 # Create your views here.
 
 # TODO: Create a function for each path created in customers/urls.py. Each will need a template as well.
@@ -11,7 +14,7 @@ def index(request):
     # The following line will get the logged-in in user (if there is one) within any view function
     user = request.user
     try:
-        customer = Customer.objects.get(user_id=user.id)
+        customer = Customer.objects.get(pk=user.id)
         context = {
             'customer': customer
         }
@@ -56,28 +59,29 @@ def registration(request):
 def monthly_statement(request):
     pass
 #       utilize boolean statement from employees.views.charge_pickup function
-def create_edit_pickup(request):
+def create_edit_pickup(request, customer):
+    # if request.method == 'POST':
+        # if Customer.weekly_pickup_day == None:
+        #     weekly_pickup_day = request.POST.get('name')
+        #     new_weekly_pickup_day = Customer(weekly_pickup_day=weekly_pickup_day)
+        #     new_weekly_pickup_day.save()
+        #     return HttpResponseRedirect(reverse('customers:index'))
+        # else:
+    edit_weekly_pickup_day =User.objects.get(pk=customer)
+    context = {
+            'edit_weekly_pickup_day': edit_weekly_pickup_day
+    }
     if request.method == 'POST':
-        if Customer.weekly_pickup_day == NULL:
-            weekly_pickup_day = request.POST.get('name')
-            new_weekly_pickup_day = Customer(weekly_pickup_day=weekly_pickup_day)
-            new_weekly_pickup_day.save()
-            return HttpResponseRedirect(reverse('customers:index'))
-        else:
-            edit_weekly_pickup_day = Customer.objects.get(pk=user)
-            context = {
-                'edit_weekly_pickup_day': edit_weekly_pickup_day
-            }
-            if request.method == 'POST':
-                edit_weekly_pickup_day.weekly_pickup_day = request.POST.get('weekly_pickup_day')
-                edit_weekly_pickup_day.save()
-                return HttpResponseRedirect(reverse('customers:index'))
-            else:
-                return render(request, "customers/edit_weekly_pickup.html", context)
+        edit_weekly_pickup_day.weekly_pickup_day = request.POST.get('weekly_pickup_day')
+        edit_weekly_pickup_day.save()
+        return HttpResponseRedirect(reverse('customers:index'))
     else:
-        return render(request, "customers/home.html")
-    pass
-#     create/edit format from previous project (possibly two functions)
+        return render(request, "customers/edit_weekly_pickup.html", context)
+    # else:
+    #     return render(request, "customers/edit_weekly_pickup.html")
+    #     create/edit format from previous project (possibly two functions)
+
+
 def onetime_pickup(request):
     if request.method == 'POST':
         onetime_pickup = request.POST.get('onetime_pickup')

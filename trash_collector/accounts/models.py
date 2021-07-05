@@ -8,4 +8,4 @@ class User(AbstractUser):
     is_employee = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.username
+        return self.username, self.pk

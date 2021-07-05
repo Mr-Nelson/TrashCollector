@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Weekly Pickup {% endblock %}
+
+{% block header %} Edit Weekly Pickup {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h1>Current Pickup Day - {{weekly_pickup_day}} </h1>
+            <div class="form-group">
+                <label for="sel1">Garbage pickup day(select one):</label><br>
+                <select class="custom-select custom-select-sm" type="text" name="weekly_pickup_day"
+                        id="weekly_pickup_day">
+                    <option selected>Pick a Weekday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                </select>
+            </div>
+            <br>
+            <input type="submit" value="Submit your details">
+            </form>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
