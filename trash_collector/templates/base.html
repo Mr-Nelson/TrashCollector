@@ -17,11 +17,11 @@
       <a class="navbar-brand" href="#">dCC Trash Services</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="{% url 'customers:account_info' %}">Home</a></li>
       <li><a href="{% url 'customers:account_info' %}">Account Info</a></li>
       <li><a href="{% url 'customers:edit_weekly_pickup_day' %}">Change Pickup Day</a></li>
       <li><a href="{% url 'customers:onetime_pickup' %}">Request One Time Pickup</a></li>
       <li><a href="{% url 'customers:pickup_suspension' %}">Suspend Service</a></li>
+      <li><a href="{% url 'logout' %}">Log Out</a></li>
     </ul>
   </div>
 </nav>
@@ -37,17 +37,18 @@
       <li><a href="{% url 'employees:registration' %}">Register Employee</a></li>
       <li><a href="{% url 'employees:daily' %}">Daily Route</a></li>
       <li><a href="{% url 'employees:lookup' %}">Lookup Specific Date</a></li>
+      <li><a href="{% url 'logout' %}">Log Out</a></li>
     </ul>
   </div>
 </nav>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">dCC Trash Services</a>
-</nav>
+<!--<nav class="navbar navbar-default">-->
+<!--  <div class="container-fluid">-->
+<!--    <div class="navbar-header">-->
+<!--      <a class="navbar-brand" href="#">dCC Trash Services</a>-->
+<!--</nav>-->
     {% endif %}
   {% endfor %}
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
+<!--  <p><a href="{% url 'logout' %}">Log Out</a></p>-->
 {% endif %}
   <main>
     <h1>{% block header %} {% endblock %}</h1>

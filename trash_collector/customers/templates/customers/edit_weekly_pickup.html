@@ -2,14 +2,13 @@
 
 {% block title %} Edit Weekly Pickup {% endblock %}
 
-{% block header %} Edit Weekly Pickup {% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <h1>Your Current Pickup Day is {{edit_weekly_pickup_day.weekly_pickup_day}} </h1>
+            <h2>Your Current Pickup Day is {{edit_weekly_pickup_day.weekly_pickup_day}} </h2>
             <form action="{% url 'customers:edit_weekly_pickup_day' %}" method="post">
                 {% csrf_token %}
             <div class="form-group">

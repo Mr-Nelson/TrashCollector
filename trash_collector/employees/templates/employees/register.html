@@ -8,8 +8,8 @@
   <h2>Enter Your Details Here</h2>
   <form action="{% url 'employees:registration' %}" method="post">
     {% csrf_token %}
-    Name:<input type="text" name="name" id="name"><br>
-    Route:<input type="text" name="route" id="route"><br>
+    Name: <input type="text" name="name" id="name"><br>
+    Route(zipcode): <input type="text" name="route" id="route"><br>
     <input type="submit" value="Submit your details.">
   </form>
 {% endblock %}

@@ -2,26 +2,35 @@
 
 {% block title %} Account Details {% endblock %}
 
-{% block header %} Account Details {% endblock %}
 
 {% block content %}
-
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col=md-3"></div>
+        <div class="col-md-6">
+            <form>
+            <h2>Account Details</h2>
             <strong>Name</strong><br>
-            <p> {{account_info_detail.name}}</p><br>
+            <p> {{account_info_detail.name}}</p>
             <strong>Address</strong><br>
             <p> {{account_info_detail.address}}</p>
-            <p> {{account_info_detail.zip_code}}</p><br><br>
+            <p> {{account_info_detail.zip_code}}</p>
             <strong>Current Weekly Pickup Day</strong>
-            <p>{{account_info_detail.weekly_pickup_day}}</p><br>
-
+            <p>{{account_info_detail.weekly_pickup_day}}</p>
+            <strong>One-Time Pickup Request</strong>
+            <p>{{account_info_detail.onetime_pickup}}</p>
+            <strong>Service Suspensions</strong>
+            <p>{{account_info_detail.start_suspension}} through {{account_info_detail.end_suspension}}</p>
             <strong>Current Monthly Charges</strong>
             <p> ${{account_info_detail.balance}}
-             - Due on the last day of every month.</p>
-          </div>
+                - Due on the last day of every month.</p>
+            </form>
+        </div>
+        <br>
+        <div class="col=md-3"></div>
     </div>
 </div>
+</div>
+
 
 {% endblock %}
