@@ -15,11 +15,11 @@ def index(request):
     # The following line will get the logged-in in user (if there is one) within any view function
     user = request.user
     try:
-        customer = Customer.objects.get(pk=user.id)
+        customer = Customer.objects.get(user=user.id)
         context = {
             'customer': customer
         }
-        return render(request, 'customer/index.html', context)
+        return render(request, 'customer/account_info.html', context)
     except:
         return HttpResponseRedirect(reverse('customers:registration'))
     # is_customer = user.groups.filter(name="Customers").exists
@@ -53,7 +53,7 @@ def registration(request):
                             zip_code=zip_code,
                             weekly_pickup_day=weekly_pickup_day)
         user_registration.save()
-        return HttpResponseRedirect(reverse('customers:index'))
+        return HttpResponseRedirect(reverse('customers:account_info'))
     else:
         return render(request, "customers/register.html")
     pass
@@ -76,7 +76,7 @@ def create_edit_pickup(request):
     if request.method == 'POST':
         edit_weekly_pickup_day.weekly_pickup_day = request.POST.get('weekly_pickup_day')
         edit_weekly_pickup_day.save()
-        return HttpResponseRedirect(reverse('customers:index'))
+        return HttpResponseRedirect(reverse('customers:account_info'))
     else:
         return render(request, "customers/edit_weekly_pickup.html", context)
     # else:
@@ -94,7 +94,7 @@ def onetime_pickup(request):
     if request.method == 'POST':
         new_onetime_pickup.onetime_pickup = request.POST.get('onetime_pickup')
         new_onetime_pickup.save()
-        return HttpResponseRedirect(reverse('customers:index'))
+        return HttpResponseRedirect(reverse('customers:account_info'))
     else:
         return render(request, "customers/onetime_pickup.html", context)
     #       create format for onetime_pickup object
@@ -111,7 +111,7 @@ def pickup_suspension(request):
         new_pickup_suspension.start_suspension = request.POST.get('start_suspension')
         new_pickup_suspension.end_suspension = request.POST.get('end_suspension')
         new_pickup_suspension.save()
-        return HttpResponseRedirect(reverse('customers:index'))
+        return HttpResponseRedirect(reverse('customers:account_info'))
     else:
         return render(request, "customers/pickup_suspension.html", context)
 

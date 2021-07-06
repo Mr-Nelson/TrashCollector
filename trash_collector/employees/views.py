@@ -5,11 +5,8 @@ from django.shortcuts import render
 from django.apps import apps
 from django.urls import reverse
 from .models import Employee
+from customers.models import Customer
 
-<<<<<<< HEAD
-import
-=======
->>>>>>> 4c1e626f7b690a7bc4cdfa7b0ee50bb18550f067
 
 # Create your views here.
 
@@ -51,13 +48,14 @@ def registration(request):
 
 def daily_filter(request, does_pickup=None):
     user = request.user
-    user = Employee.route
+    user_route = Employee.route
+
     # query for logged in employee so we know their zipcode
     # once we have employee zip code, query Customers using filter to find customers whose zipcode matches employee's
     Customer = apps.get_model('customers.Customer')
     does_pick = False
     create_route = [does_pickup == True]
-    if Customer.objects.filter(Customer.zip_code == user):
+    if Customer.objects.filter(Customer.zip_code == user_route):
         if ExtractWeekDay(Customer.weekly_pickup_day) == datetime.datetime.now or ExtractWeekDay(
                 Customer.onetime_pickup) == datetime.datetime.now:
             does_pickup = True
