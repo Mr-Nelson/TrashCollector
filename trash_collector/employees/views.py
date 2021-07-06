@@ -53,7 +53,7 @@ def daily_filter(request, does_pickup=None):
     # query for logged in employee so we know their zipcode
     # once we have employee zip code, query Customers using filter to find customers whose zipcode matches employee's
     Customer = apps.get_model('customers.Customer')
-    does_pick = False
+    does_pickup = False
     create_route = [does_pickup == True]
     if Customer.objects.filter(Customer.zip_code == user_route):
         if ExtractWeekDay(Customer.weekly_pickup_day) == datetime.datetime.now or ExtractWeekDay(
