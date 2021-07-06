@@ -7,7 +7,6 @@
     Hello Employee {{ user.username }}!
 
      <table class="table table-striped">
-       {% csrf_token %}
         <thead title="Customers">
           <p width="100%">Customers</p>
           <tr>
@@ -18,12 +17,12 @@
           </tr>
         </thead>
         <tbody>
-        {% for Customer in all_customers %}
+        {% for Customer in customer %}
           <tr>
-            <td>{{Customer.name}}</td>
-            <td>{{Customer.address}}</td>
-            <td>{{Customer.zip_code}}</td>
-            <td>{{Customer.balance}}</td>
+            <td>{{ Customer.name }}</td>
+            <td>{{ Customer.address }}</td>
+            <td>{{ Customer.zip_code }}</td>
+            <td>{{ Customer.balance }}</td>
           </tr>
         {% endfor %}
        </tbody>
