@@ -2,7 +2,7 @@ from datetime import date, datetime
 import calendar
 from django.apps import apps
 from django.db.models.functions import ExtractWeekDay
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -52,12 +52,9 @@ def daily_filter(request, does_pickup=None):
     user = request.user
     employee = Employee.objects.get(user_id=user.id)
     Customer = apps.get_model('customers.Customer')
-
     customers = Customer.objects.filter(zip_code=employee.route)
     my_date = date.today()
-
-    does_pickup = False
-    create_route = [does_pickup == True]
+    create_route = []
     now_weekday = calendar.day_name[my_date.weekday()]
     int_weekday = date.today().weekday()
     for cust in customers:
@@ -66,10 +63,8 @@ def daily_filter(request, does_pickup=None):
             customer_onetime = datetime.weekday(cust.onetime_pickup)
         else:
             customer_onetime = None
-        if  customer_weekday == now_weekday or customer_onetime == int_weekday:
-            does_pickup = True
-        else:
-            does_pickup = False
+        if customer_weekday == now_weekday or customer_onetime == int_weekday:
+            create_route.append(cust)
     # suspended_accounts = []
     # now_calendar = date.today()
     # for cust in customers:
