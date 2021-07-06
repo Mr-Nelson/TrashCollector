@@ -56,13 +56,26 @@ def daily_filter(request, does_pickup=None):
     my_date = date.today()
     does_pickup = False
     create_route = [does_pickup == True]
-    for Customer in customers:
-        if ExtractWeekDay(Customer.weekly_pickup_day) == calendar.day_name[my_date.weekday()] or ExtractWeekDay(Customer.onetime_pickup) == calendar.day_name[my_date.weekday()]:
+    now_weekday = calendar.day_name[my_date.weekday()]
+    int_weekday = date.today().weekday()
+    for cust in customers:
+        customer_weekday = cust.weekly_pickup_day
+        if cust.onetime_pickup is not None:
+            customer_onetime = datetime.weekday(cust.onetime_pickup)
+        else:
+            customer_onetime = None
+        if  customer_weekday == now_weekday or customer_onetime == int_weekday:
             does_pickup = True
         else:
             does_pickup = False
-    suspended_accounts = Customer.objects.filter(datetime.date.today > Customer.start_suspension) and Customer.objects.filter(datetime.date.today < Customer.end_suspension)
-    create_route.remove(suspended_accounts)
+    # suspended_accounts = []
+    # now_calendar = date.today()
+    # for cust in customers:
+    #     start_date = cust.start_suspension
+    #     end_date = cust.end_suspension
+    #     if now_calendar > start_date and now_calendar < end_date:
+    #         return suspended_accounts.append()
+    # create_route.remove(suspended_accounts)
     context = {
         'create_route': create_route
     }
