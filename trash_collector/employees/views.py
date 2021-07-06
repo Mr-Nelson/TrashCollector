@@ -1,11 +1,11 @@
+import datetime
 from django.db.models.functions import ExtractWeekDay
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.apps import apps
 from django.urls import reverse
 from .models import Employee
-import pandas as pd
-import datetime
+
 
 # Create your views here.
 
@@ -19,7 +19,7 @@ def index(request):
     # query customer take to find customer record whose user matches this user
     # if that finds no results, redirect them to finishing register
     Customer = apps.get_model('customers.Customer')
-    customer = Customer.objects.all
+    customer = Customer.objects.all()
     context = {
         'customer': customer
     }
@@ -44,23 +44,31 @@ def registration(request):
             return HttpResponseRedirect(reverse('employees:index'))
         else:
             return render(request, 'employees/register.html')
-def daily_filter(request):
-    request.user
+
+def daily_filter(request, does_pickup=None):
+    user = request.user
+    user = Employee.route
+    # query for logged in employee so we know their zipcode
+    # once we have employee zip code, query Customers using filter to find customers whose zipcode matches employee's
     Customer = apps.get_model('customers.Customer')
-    does_pickup = False
+    does_pick = False
     create_route = [does_pickup == True]
-    while Employee.objects.filter(route=request) == Customer.objects.filter(zip_code=request):
-        if ExtractWeekDay(Customer.weekly_pickup_day) == ExtractWeekDay.datetime.now or ExtractWeekDay(Customer.onetime_pickup) == ExtractWeekDay.datetime.now:
+    if Customer.objects.filter(Customer.zip_code == user):
+        if ExtractWeekDay(Customer.weekly_pickup_day) == datetime.datetime.now or ExtractWeekDay(
+                Customer.onetime_pickup) == datetime.datetime.now:
             does_pickup = True
         else:
             does_pickup = False
-
+    if ExtractWeekDay(Customer.weekly_pickup_day) == datetime.datetime.now or ExtractWeekDay(Customer.onetime_pickup) == datetime.datetime.now():
+        does_pickup = True
+    else:
+        does_pickup = False
     # suspended_accounts = Customer.objects.filter(
     #         datetime.datetime.now() > Customer.start_suspension and Customer.objects.filter(
     #             datetime.datetime.now() < Customer.end_suspension)
     # create_route.remove(suspended_accounts)
     context = {
-        'create_route':create_route
+        'create_route': create_route
     }
     return render(request, 'employees/Daily Route.html', context)
     pass
