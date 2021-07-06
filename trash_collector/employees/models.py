@@ -8,3 +8,8 @@ class Employee (models.Model):
     name = models.CharField (max_length=20)
     user = models.ForeignKey('accounts.User', blank=True, null=True, on_delete=models.CASCADE)
     route = models.CharField (max_length=5)
+
+    def __repr__(self):
+        return self.name, self.user, self.route
+    def __str__(self):
+        return self.name, self.user, self.route
