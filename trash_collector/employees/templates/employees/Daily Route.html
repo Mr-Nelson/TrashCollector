@@ -6,7 +6,7 @@
 
 {% block content %}
   <li><h2>{{Employee.daily_filter}}</h2></li>
-  {% if Employee.daily_filter  %}
+<!--  {% if Employee.daily_filter  %}-->
 
   <table class="table table-striped">
         <thead title="Customers">
@@ -19,9 +19,9 @@
           </tr>
         </thead>
         <tbody>
-        {% for Customer in customers %}
+        {% for Customer in create_route %}
           <tr>
-            <td>{{Customer.name}}</td>
+            <td>{{create_route.name}}</td>
             <td>{{Customer.address}}</td>
             <td>{{Customer.zip_code}}</td>
             <td>{{Employee.confirm_pickup}}<input type="checkbox"></td>
@@ -29,7 +29,7 @@
         {% endfor %}
        </tbody>
       </table>
-  {% else %}
-    <p>You are at the daily route page. You do not have a daily route today. Please visit the registration page.</p>
+<!--  {% else %}-->
+<!--    <p>You are at the daily route page. You do not have a daily route today. Please visit the registration page.</p>-->
   {% endif %}
 {% endblock %}

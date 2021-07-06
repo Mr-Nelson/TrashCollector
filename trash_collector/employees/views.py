@@ -52,10 +52,8 @@ def daily_filter(request, does_pickup=None):
     user = request.user
     employee = Employee.objects.get(user_id=user.id)
     Customer = apps.get_model('customers.Customer')
-
     customers = Customer.objects.filter(zip_code=employee.route)
     my_date = date.today()
-
     does_pickup = False
     create_route = [does_pickup == True]
     now_weekday = calendar.day_name[my_date.weekday()]
@@ -66,7 +64,7 @@ def daily_filter(request, does_pickup=None):
             customer_onetime = datetime.weekday(cust.onetime_pickup)
         else:
             customer_onetime = None
-        if  customer_weekday == now_weekday or customer_onetime == int_weekday:
+        if customer_weekday == now_weekday or customer_onetime == int_weekday:
             does_pickup = True
         else:
             does_pickup = False
