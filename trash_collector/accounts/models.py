@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
+import customers.models
 
 
 class User(AbstractUser):
@@ -8,6 +9,10 @@ class User(AbstractUser):
     is_employee = models.BooleanField(default=False)
 
     def __repr__(self):
-        return self.username, self.pk, self.objects
+        return self.username, self.pk, self.objects,
+
     def __str__(self):
-        return self.username, self.pk, self.objects
+        return self.username, self.pk, self.objects,
+
+    def __int__(self):
+        return self.username, self.pk, self.objects,
