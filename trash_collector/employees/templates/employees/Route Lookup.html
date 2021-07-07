@@ -5,7 +5,7 @@
 {% block header %} Route Lookup {% endblock %}
 
 {% block content %}
- <li><h2>{{Employee.lookup}}</h2></li>
+<li><h2>{{Employee.lookup}}</h2></li>
 
 <div class="container">
     <div class="row">
@@ -14,17 +14,17 @@
             <h2>Route Date:</h2>
             <form action="{% url 'employees:lookup' %}" method="post">
                 {% csrf_token %}
-       <div class="form-group">
-                <label for="sel1">Select a new weekday below:</label><br>
-                <select class="custom-select custom-select-sm" type="text" name="select date" id="select date">                  >
-                    <option selected>Pick a Weekday</option>
-                    <option value="Monday">Monday</option>
-                    <option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option>
-                    <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="sel1">Select a new weekday below:</label><br>
+                    <select class="custom-select custom-select-sm" type="text" name="select date" id="select date"> >
+                        <option selected>Pick a Weekday</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                    </select>
+                </div>
                 <br>
                 <input type="submit" value="Filter for Date">
             </form>
@@ -33,6 +33,6 @@
     </div>
 </div>
 
-    <p>You are at the lookup route page. You do not have a route this day. Please try a different day.</p>
+<p>You are at the lookup route page. You do not have a route this day. Please try a different day.</p>
 
 {% endblock %}
