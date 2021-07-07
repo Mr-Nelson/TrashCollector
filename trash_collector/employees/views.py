@@ -91,8 +91,8 @@ def lookup(request, does_pickup=None):
     if request.method == 'POST':
         my_date = request.POST.get('select date')
         now_calendar = my_date
-        now_weekday = calendar.day_name[my_date.weekday()]
-        int_weekday = my_date.weekday()
+        now_weekday = calendar.weekday(datetime.now())
+        int_weekday = my_date.weekday(my_date)
         for cust in customers:
             start_date = cust.start_suspension
             end_date = cust.end_suspension
