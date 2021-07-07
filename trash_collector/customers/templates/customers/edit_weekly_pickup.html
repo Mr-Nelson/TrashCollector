@@ -4,11 +4,11 @@
 
 
 {% block content %}
-<div class="container">
+<div class="container" style="text-align: center">
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <h2>Your Current Pickup Day is {{edit_weekly_pickup_day.weekly_pickup_day}} </h2>
+            <h3>Your Current Pickup Day is {{edit_weekly_pickup_day.weekly_pickup_day}} </h3>
             <form action="{% url 'customers:edit_weekly_pickup_day' %}" method="post">
                 {% csrf_token %}
             <div class="form-group">

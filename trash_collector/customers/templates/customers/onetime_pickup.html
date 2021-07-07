@@ -6,11 +6,11 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container" style="text-align: center">
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <h2>Pickup Request Date:</h2>
+            <h2>One Time Pickup</h2>
             <form action="{% url 'customers:onetime_pickup' %}" method="post">
                 {% csrf_token %}
                 Choose Calendar Date:<br><input type="date" name="onetime_pickup" id="onetime_pickup"><br>
