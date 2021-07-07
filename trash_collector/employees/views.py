@@ -84,30 +84,29 @@ def lookup(request, does_pickup=None):
     employee = Employee.objects.get(user_id=user.id)
     Customer = apps.get_model('customers.Customer')
     customers = Customer.objects.filter(zip_code=employee.route)
-    my_date = date.today()
     create_route = []
-    now_weekday_pick = calendar.day_name[my_date.weekday()]
-    int_weekday_pick = date.today().weekday()
-    for cust in customers:
-        customer_weekday = cust.weekly_pickup_day
-        if cust.onetime_pickup is not None:
-            customer_onetime = datetime.weekday(cust.onetime_pickup)
-        else:
-            customer_onetime = None
-        if customer_weekday == now_weekday or customer_onetime == int_weekday:
-            create_route.append(cust)
-    # suspended_accounts = []
-    # now_calendar = date.today()
-    # for cust in customers:
-    #     start_date = cust.start_suspension
-    #     end_date = cust.end_suspension
-    #     if now_calendar > start_date and now_calendar < end_date:
-    #         return suspended_accounts.append()
-    # create_route.remove(suspended_accounts)
     context = {
         'create_route': create_route
     }
-    return render(request, 'employees/Daily Route.html', context)
+    if request.method == 'POST':
+        my_date = request.POST.get('select date')
+        now_calendar = my_date
+        now_weekday = calendar.day_name[my_date.weekday()]
+        int_weekday = my_date.weekday()
+        for cust in customers:
+            start_date = cust.start_suspension
+            end_date = cust.end_suspension
+            customer_weekday = cust.weekly_pickup_day
+            if now_calendar.__lt__(start_date) and now_calendar.__gt__(end_date):
+                if cust.onetime_pickup is not None:
+                    customer_onetime = datetime.weekday(cust.onetime_pickup)
+                else:
+                    customer_onetime = None
+                if customer_weekday == now_weekday or customer_onetime == int_weekday:
+                    create_route.append(cust)
+        return HttpResponseRedirect(reverse('employees:Route Lookup'))
+    else:
+        return render(request, 'employees/Route Lookup.html', context)
 
 
 def confirm_pickup(request, user_id):
