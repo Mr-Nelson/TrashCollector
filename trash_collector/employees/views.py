@@ -1,6 +1,7 @@
 from datetime import date, datetime
 import calendar
 from django.apps import apps
+from django.db.models.functions import ExtractWeekDay
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
@@ -111,9 +112,9 @@ def lookup(request, does_pickup=None):
         #                 customer_onetime = None
         #             if customer_weekday == now_weekday or customer_onetime == int_weekday:
         #                 create_route.append(cust)
-        return render(request, 'employees/Daily Route.html', context)
-    else:
-        return render(request, 'employees/Route Lookup.html', context)
+        #     return HttpResponseRedirect(reverse('employees:Route Lookup'))
+        # else:
+        #     return render(request, 'employees/Route Lookup.html', context)
 
 
 def confirm_pickup(request, user_id):
