@@ -131,12 +131,14 @@ def charge_pickup(request):
     pass
 #       connected with boolean is_complete = True
 
-def extract_lat_long_via_address(address_or_zipcode):
+def extract_lat_long_via_address(customer_address):
     lat, lng = None, None
+    customer = apps.get_model('customers.Customer')
+    customer_address = Customer.address
     trash_collector = apps.get_model('trash_collector.trash_collector')
     api_key = trash_collector.GOOGLE_API_KEY
     base_url = "https://maps.googleapis.com/maps/api/geocode/json"
-    endpoint = f"{base_url}?address={address_or_zipcode}&key={api_key}"
+    endpoint = f"{base_url}?address={customer_address}&key={api_key}"
     # see how our endpoint includes our API key? Yes this is yet another reason to restrict the key
     r = requests.get(endpoint)
     if r.status_code not in range(200, 299):
@@ -151,4 +153,4 @@ def extract_lat_long_via_address(address_or_zipcode):
         lng = results['geometry']['location']['lng']
     except:
         pass
-    return lat, lng
+    return HttpResponseRedirect(reverse, 'endpoint')
