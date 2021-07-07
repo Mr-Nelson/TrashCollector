@@ -89,6 +89,9 @@ def lookup(request, does_pickup=None):
     }
     if request.method == 'POST':
         my_date = request.POST.get('select date')
+        # now_calendar = my_date
+        # now_weekday = calendar.weekday(datetime.now())
+        # int_weekday = my_date.weekday(my_date)
         for cust in customers:
             if customer_weekday == my_date:
                 create_route.append(cust)
