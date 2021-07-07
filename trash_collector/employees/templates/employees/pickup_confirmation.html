@@ -12,7 +12,7 @@
             <h2>Confirm Pickup for <br>{{charge_customer.address}}:</h2>
             <form action="{% url 'employees:confirm' charge_customer.id %}" method="post">
                 {% csrf_token %}
-                Confirm Pickup:<br><input type="number" value="10" name="balance" id="charge_customer.balance"><br>
+                Confirm Pickup:<br><input type="checkbox" name="balance" id="balance"><br>
                 <br>
                 <input type="submit" value="Submit Request">
             </form>

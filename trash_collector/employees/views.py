@@ -108,10 +108,9 @@ def confirm_pickup(request, user_id):
         'charge_customer': charge_customer
     }
     if request.method == 'POST':
-        charge_customer.balance = request.POST.get('balance')
-        charge_customer = Customer(balance=customers.models.Customer.balance)
+        charge_customer.balance += 10
         charge_customer.save()
-        return HttpResponseRedirect(reverse('employees:daily_filter'))
+        return HttpResponseRedirect(reverse('employees:daily'))
     else:
         return render(request, "employees/pickup_confirmation.html", context)
     #       create format for onetime_pickup object

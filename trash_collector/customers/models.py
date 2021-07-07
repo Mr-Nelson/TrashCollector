@@ -15,10 +15,10 @@ class Customer(models.Model):
     address = models.TextField(max_length=101, null=True)
     zip_code = models.CharField(max_length=5, null=True)
 
+
     def __repr__(self):
-        return self.name, self.zip_code,
+        return self.name, self.zip_code
     def __str__(self):
-        return self.name, self.zip_code,
-    def __int__(self):
-        self.balance
+        return self.name, self.zip_code
+
 
