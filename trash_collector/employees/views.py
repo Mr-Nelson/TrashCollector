@@ -1,7 +1,6 @@
 from datetime import date, datetime
 import calendar
 from django.apps import apps
-from django.db.models.functions import ExtractWeekDay
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
@@ -90,21 +89,26 @@ def lookup(request, does_pickup=None):
     }
     if request.method == 'POST':
         my_date = request.POST.get('select date')
-        now_calendar = my_date
-        now_weekday = calendar.day_name[my_date.weekday()]
-        int_weekday = my_date.weekday()
         for cust in customers:
-            start_date = cust.start_suspension
-            end_date = cust.end_suspension
-            customer_weekday = cust.weekly_pickup_day
-            if now_calendar.__lt__(start_date) and now_calendar.__gt__(end_date):
-                if cust.onetime_pickup is not None:
-                    customer_onetime = datetime.weekday(cust.onetime_pickup)
-                else:
-                    customer_onetime = None
-                if customer_weekday == now_weekday or customer_onetime == int_weekday:
-                    create_route.append(cust)
-        return HttpResponseRedirect(reverse('employees:Route Lookup'))
+            if customer_weekday == my_date:
+                create_route.append(cust)
+        # if my_date is not None:
+        #     datetimeobj = datetime.strptime(my_date, "%Y-%m-%d")
+        #     now_calendar = datetimeobj.date()
+        #     int_weekday = datetimeobj.weekday()
+        #     now_weekday = calendar.day_name[int_weekday]
+        #     for cust in customers:
+        #         start_date = cust.start_suspension
+        #         end_date = cust.end_suspension
+        #         customer_weekday = cust.weekly_pickup_day
+        #         if now_calendar.__lt__(start_date) and now_calendar.__gt__(end_date):
+        #             if cust.onetime_pickup is not None:
+        #                 customer_onetime = datetime.weekday(cust.onetime_pickup)
+        #             else:
+        #                 customer_onetime = None
+        #             if customer_weekday == now_weekday or customer_onetime == int_weekday:
+        #                 create_route.append(cust)
+        return render(request, 'employees/Daily Route.html', context)
     else:
         return render(request, 'employees/Route Lookup.html', context)
 
