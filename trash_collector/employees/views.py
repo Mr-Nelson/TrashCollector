@@ -93,7 +93,7 @@ def lookup(request, does_pickup=None):
         # now_weekday = calendar.weekday(datetime.now())
         # int_weekday = my_date.weekday(my_date)
         for cust in customers:
-            if customer_weekday == my_date:
+            if cust.weekly_pickup_day == my_date:
                 create_route.append(cust)
         # if my_date is not None:
         #     datetimeobj = datetime.strptime(my_date, "%Y-%m-%d")
