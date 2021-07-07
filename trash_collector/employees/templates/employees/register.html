@@ -2,14 +2,16 @@
 
 {% block title %} Update Employee Account {% endblock %}
 
-{% block header %} Update Employee Account {% endblock %}
+
 
 {% block content %}
-  <h2>Enter Your Details Here</h2>
+<div class="container" style="text-align: center">
+  <h2>Employee Registration</h2>
   <form action="{% url 'employees:registration' %}" method="post">
     {% csrf_token %}
-    Name: <input type="text" name="name" id="name"><br>
-    Route(zipcode): <input type="text" name="route" id="route"><br>
+    Name: <br><input type="text" name="name" id="name"><br><br>
+    Route(zipcode): <br><input type="text" name="route" id="route"><br><br>
     <input type="submit" value="Submit your details.">
   </form>
+</div>
 {% endblock %}
