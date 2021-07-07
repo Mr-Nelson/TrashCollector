@@ -30,6 +30,7 @@ def index(request):
     }
     return render(request, 'employees/index.html', context)
 
+
 def registration(request):
     request.user
     try:
@@ -50,15 +51,43 @@ def registration(request):
         else:
             return render(request, 'employees/register.html')
 
+
 def daily_filter(request, does_pickup=None):
     user = request.user
     employee = Employee.objects.get(user_id=user.id)
     Customer = apps.get_model('customers.Customer')
     customers = Customer.objects.filter(zip_code=employee.route)
     my_date = date.today()
+    now_calendar = date.today()
     create_route = []
     now_weekday = calendar.day_name[my_date.weekday()]
     int_weekday = date.today().weekday()
+    for cust in customers:
+        start_date = cust.start_suspension
+        end_date = cust.end_suspension
+        customer_weekday = cust.weekly_pickup_day
+        if now_calendar.__lt__(start_date) and now_calendar.__gt__(end_date):
+            if cust.onetime_pickup is not None:
+                customer_onetime = datetime.weekday(cust.onetime_pickup)
+            else:
+                customer_onetime = None
+            if customer_weekday == now_weekday or customer_onetime == int_weekday:
+                create_route.append(cust)
+    context = {
+        'create_route': create_route
+    }
+    return render(request, 'employees/Daily Route.html', context)
+
+
+def lookup(request, does_pickup=None):
+    user = request.user
+    employee = Employee.objects.get(user_id=user.id)
+    Customer = apps.get_model('customers.Customer')
+    customers = Customer.objects.filter(zip_code=employee.route)
+    my_date = date.today()
+    create_route = []
+    now_weekday_pick = calendar.day_name[my_date.weekday()]
+    int_weekday_pick = date.today().weekday()
     for cust in customers:
         customer_weekday = cust.weekly_pickup_day
         if cust.onetime_pickup is not None:
@@ -80,27 +109,6 @@ def daily_filter(request, does_pickup=None):
     }
     return render(request, 'employees/Daily Route.html', context)
 
-def lookup(request, does_pickup=None):
-    user = request.user
-    employee = Employee.objects.get(user_id=user.id)
-    Customer = apps.get_model('customers.Customer')
-    customers = Customer.objects.filter(zip_code=employee.route)
-    does_pick = False
-    create_route = [does_pickup == True]
-    for Customer in customers:
-        if ExtractWeekDay(Customer.weekly_pickup_day) == datetime.date.today() or ExtractWeekDay(
-                Customer.onetime_pickup) == datetime.date.today():
-            does_pickup = True
-        else:
-            does_pickup = False
-    # suspended_accounts = Customer.objects.filter(
-    #         datetime.date.weekday(now) > Customer.start_suspension and Customer.objects.filter(
-    #             datetime.date.weekday(now) < Customer.end_suspension)
-    # create_route.remove(suspended_accounts)
-    context = {
-        'create_route': create_route
-    }
-    return render(request, 'employees/Daily Route.html', context)
 
 def confirm_pickup(request, user_id):
     charge_customer = Customer.objects.get(pk=user_id)
@@ -122,6 +130,7 @@ def confirm_pickup(request, user_id):
     # return render(request, 'employees:confirm_pickup')
     pass
 #       utilizing boolean phrase is_complete
+
 
 def charge_pickup(request):
     # if request.confirm_pickup == True:
