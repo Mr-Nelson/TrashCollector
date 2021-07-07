@@ -22,7 +22,7 @@
             <td>{{Customer.name}}</td>
             <td>{{Customer.address}}</td>
             <td>{{Customer.zip_code}}</td>
-            <td>{{Employee.confirm_pickup}}<input type="checkbox"></td>
+            <td><a href="{% url 'employees:confirm' Customer.id %}">Confirm Pickup</a></td>
           </tr>
         {% endfor %}
        </tbody>

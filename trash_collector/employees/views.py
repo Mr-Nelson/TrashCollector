@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 
+import customers.models
+from customers.models import Customer
 
 from .models import Employee
 
@@ -31,7 +33,7 @@ def index(request):
 def registration(request):
     request.user
     try:
-        new_employee = Employee.objects.get(user_id=User.id)
+        new_employee = Employee.objects.get(user_id=user.id)
         context = {
             'new_employee' : new_employee
         }
@@ -100,7 +102,19 @@ def lookup(request, does_pickup=None):
     }
     return render(request, 'employees/Daily Route.html', context)
 
-def confirm_pickup(request):
+def confirm_pickup(request, user_id):
+    charge_customer = Customer.objects.get(pk=user_id)
+    context = {
+        'charge_customer': charge_customer
+    }
+    if request.method == 'POST':
+        charge_customer.balance = request.POST.get('balance')
+        charge_customer = Customer(balance=customers.models.Customer.balance)
+        charge_customer.save()
+        return HttpResponseRedirect(reverse('employees:daily_filter'))
+    else:
+        return render(request, "employees/pickup_confirmation.html", context)
+    #       create format for onetime_pickup object
     # is_complete = False
     # try Customer.zip_code == .route:
     #     is_complete = True
