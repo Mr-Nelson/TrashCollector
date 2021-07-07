@@ -1,28 +1,14 @@
 from datetime import date, datetime
 import calendar
 from django.apps import apps
-from django.db.models.functions import ExtractWeekDay
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
-
-import customers.models
 from customers.models import Customer
-
 from .models import Employee
-
-# Create your views here.
-
-# TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
-# def customer_list(request):
-#     table = CustomerTable(Customer.objects.all())
-#     return render(request, 'employees/index.html', {'table': table})
 
 
 def index(request):
-    # This line will get the Customer model from the other app, it can now be used to query the db
-    # query customer take to find customer record whose user matches this user
-    # if that finds no results, redirect them to finishing register
     Customer = apps.get_model('customers.Customer')
     customer = Customer.objects.all()
     context = {
@@ -112,9 +98,9 @@ def lookup(request, does_pickup=None):
         #                 customer_onetime = None
         #             if customer_weekday == now_weekday or customer_onetime == int_weekday:
         #                 create_route.append(cust)
-        #     return HttpResponseRedirect(reverse('employees:Route Lookup'))
-        # else:
-        #     return render(request, 'employees/Route Lookup.html', context)
+        return render(request, 'employees/Daily Route.html', context)
+    else:
+        return render(request, 'employees/Route Lookup.html', context)
 
 
 def confirm_pickup(request, user_id):
