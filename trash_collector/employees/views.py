@@ -4,24 +4,11 @@ from django.apps import apps
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
-
-import customers.models
 from customers.models import Customer
-
 from .models import Employee
-
-# Create your views here.
-
-# TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
-# def customer_list(request):
-#     table = CustomerTable(Customer.objects.all())
-#     return render(request, 'employees/index.html', {'table': table})
 
 
 def index(request):
-    # This line will get the Customer model from the other app, it can now be used to query the db
-    # query customer take to find customer record whose user matches this user
-    # if that finds no results, redirect them to finishing register
     Customer = apps.get_model('customers.Customer')
     customer = Customer.objects.all()
     context = {

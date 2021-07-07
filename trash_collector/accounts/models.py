@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django_google_maps import fields as map_fields
 # Create your models here.
 import customers.models
 
@@ -16,3 +17,7 @@ class User(AbstractUser):
 
     def __int__(self):
         return self.username, self.pk, self.objects,
+
+class Rental(models.Model):
+    address = map_fields.AddressField(max_length=200)
+    geolocation = map_fields.GeoLocationField(max_length=100)

@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_tables2',
+    'django_google_maps',
     'accounts',
     'customers',
     'employees'
@@ -127,3 +127,5 @@ try:
     from trash_collector.local_settings import *
 except ImportError:
     pass
+
+GOOGLE_MAPS_API_KEY = 'AIzaSyDgPc3jy2cB784urXC5_pZE02nD9asLUVw'
