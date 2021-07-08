@@ -4,24 +4,11 @@ from django.apps import apps
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
-
-import customers.models
 from customers.models import Customer
-
 from .models import Employee
-
-# Create your views here.
-
-# TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
-# def customer_list(request):
-#     table = CustomerTable(Customer.objects.all())
-#     return render(request, 'employees/index.html', {'table': table})
 
 
 def index(request):
-    # This line will get the Customer model from the other app, it can now be used to query the db
-    # query customer take to find customer record whose user matches this user
-    # if that finds no results, redirect them to finishing register
     Customer = apps.get_model('customers.Customer')
     customer = Customer.objects.all()
     context = {
@@ -144,26 +131,3 @@ def charge_pickup(request):
     pass
 #       connected with boolean is_complete = True
 
-def extract_lat_long_via_address(customer_address):
-    lat, lng = None, None
-    customer = apps.get_model('customers.Customer')
-    customer_address = Customer.address
-    trash_collector = apps.get_model('trash_collector.trash_collector')
-    api_key = trash_collector.GOOGLE_API_KEY
-    base_url = "https://maps.googleapis.com/maps/api/geocode/json"
-    endpoint = f"{base_url}?address={customer_address}&key={api_key}"
-    # see how our endpoint includes our API key? Yes this is yet another reason to restrict the key
-    r = requests.get(endpoint)
-    if r.status_code not in range(200, 299):
-        return None, None
-    try:
-        '''
-        This try block incase any of our inputs are invalid. This is done instead
-        of actually writing out handlers for all kinds of responses.
-        '''
-        results = r.json()['results'][0]
-        lat = results['geometry']['location']['lat']
-        lng = results['geometry']['location']['lng']
-    except:
-        pass
-    return HttpResponseRedirect(reverse, 'endpoint')

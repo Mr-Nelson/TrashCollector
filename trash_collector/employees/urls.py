@@ -10,7 +10,7 @@ urlpatterns = [
     path('filter/', views.daily_filter, name="daily"),
     path('lookup/', views.lookup, name="lookup"),
     path('confirm/<int:user_id>/', views.confirm_pickup, name="confirm"),
-    path('charge/', views.charge_pickup, name="charge"),
-    path('extract/', views.extract_lat_long_via_address, name="extract")
+    path('charge/', views.charge_pickup, name="charge")
+
 
 ]

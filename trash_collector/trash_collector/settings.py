@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_tables2',
     'accounts',
     'customers',
     'employees'
@@ -127,3 +126,4 @@ try:
     from trash_collector.local_settings import *
 except ImportError:
     pass
+

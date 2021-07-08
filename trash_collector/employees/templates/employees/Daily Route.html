@@ -27,7 +27,7 @@
             <td>{{Customer.zip_code}}</td>
             <td>{{Customer.weekly_pickup_day}}</td>
             <td><a href="{% url 'employees:confirm' Customer.id %}">Confirm Pickup</a></td>
-              <td><a href="{% url 'employees:extract' Customer.address %}">Map it!</a></td>
+            <td><a href="https://maps.google.com/?q={{Customer.address}}">Map it!</a></td>
           </tr>
         {% endfor %}
        </tbody>
